@@ -34,6 +34,7 @@ At the end of the execution of D, script W can be executed
     <li> a callback function when library has been successfully downloaded (or script properly executed)</li>
     <li> a callback function when library download or script execution caused an error</li>
     <li> a callback function when the object is complete (lib downloaded or script executed, no other dependencies still active)</li>
+    <li> if an error occurs a "continue on failure" label can be set </li>
   </ul>
 
   To every TLH Object can be assigned two kinds of dependencies:
@@ -54,7 +55,7 @@ When executed or activated, every tlh object analyzes its core dependencies and,
 If one of the dependencies isn't satisfied, the object waits until it is.
 </p>
 <blockquote>
-SETUP CONFIGS<br/>
+SETUP CONFIGS => tlhControlObject(obj_cb, url_or_function, cb_success, cb_error, continueOnFailure)<br/>
 kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);<br/>
 kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);<br/>
 kw_tlh_configs.chartbeat = tlhControlObject(function() { window.loadChartbeat(); }, "https://www.example.it/chartbeat/chartbeat.js", null, null, true);<br/>
