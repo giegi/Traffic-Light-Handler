@@ -53,7 +53,7 @@ When created, an object doesn't do anything. It must be executed manually or be 
 When executed or activated, every tlh object analyzes its core dependencies and, if all of them are satisfied, it can download library or execute  core script, and then, after verifying the object dependencies, completes the state and executes final callback. 
 If one of the dependencies isn't satisfied, the object waits until it is.
 </p>
-<p style="font-size: 10px;">
+<p style="display:none;">
 SETUP CONFIGS<br/>
 kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);<br/>
 kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);<br/>
