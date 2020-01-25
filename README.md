@@ -43,7 +43,7 @@ When executed or activated, every tlh object analyzes its core dependencies and,
 If one of the dependencies isn't satisfied, the object waits until it is.
 
 <code>
-kw_tlh_configs.taboola_library = tlhControlObject(null, "https://cdn.taboola.com/libtrc/groupoespresso-network/loader.js", null, null, true);</code>
+kw_tlh_configs.taboola_library = tlhControlObject(null, "https://cdn.taboola.com/libtrc/groupoespresso-network/loader.js", null, null, true);</code><br />
 <code>
 kw_tlh_configs.taboola_widgets = tlhControlObject(null, "https://www.repstatic.it/cless/common/taboola/taboola_"+window.kw_tlh_activeHost+".js?v=1", null, null, true);
 </code>
