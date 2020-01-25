@@ -42,6 +42,8 @@ When created, an object doesn't do anything. It must be executed manually or be 
 When executed or activated, every tlh object analyzes its core dependencies and, if all of them are satisfied, it can download library or execute  core script, and then, after verifying the object dependencies, completes the state and executes final callback. 
 If one of the dependencies isn't satisfied, the object waits until it is.
 
+<code>
+kw_tlh_configs.taboola_library = tlhControlObject(null, "https://cdn.taboola.com/libtrc/groupoespresso-network/loader.js", null, null, true);
+		kw_tlh_configs.taboola_widgets = tlhControlObject(null, "https://www.repstatic.it/cless/common/taboola/taboola_"+window.kw_tlh_activeHost+".js?v=1", null, null, true);
 
-
-
+</code>
