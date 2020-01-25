@@ -8,7 +8,7 @@ An analytics system, in order to work properly, needs to have available a serie 
 Putting in order the script tags in the head tag is not enough to be sure that everything will work in the correct sequence.
 TLH does this for you. <br />
 Let's see a pratical example.</p>
-We have four libraries, A, B, C, D
+<p>We have four libraries, A, B, C, D
 We have three scripts, Z, W and X
 A can be downloaded to initiate the chain (or A must wait the DomContentLoaded to be downloaded)
 Z needs A to be downloaded.
@@ -27,14 +27,21 @@ At the end of the execution of D, script W can be executed
 
 In a so made scenario, Trafic Light Handler allows you to set complex hierarchies of objects. 
 Every TLH object can be a library to download, a script to execute, an empty container, or both the firsts.
-For every TLH Object can be set:
+For every TLH Object a couple of things can be set:
 - its core: a library to download or a script to execute
-- a callback function when library has been successfully downloaded
-- a callback function when library download caused an error
-- a callback function when the object is complete (lib downloaded or script executed)
+- a callback function when library has been successfully downloaded (or script properly executed)
+- a callback function when library download or script execution caused an error
+- a callback function when the object is complete (lib downloaded or script executed, no other dependencies still active)
+
 To every TLH Object can be assigned two kinds of dependencies:
-- a dependency that blocks execution of the core (lib or script)
-- a dependency that blocks the state of the object (completed or not)
-Both kind of dependencies can be set at the samne time.
+- a dependency that blocks execution of the core (lib or script) _> core dependency
+- a dependency that blocks the state of the object (completed or not) after the core execution _> object dependency
+Both kind of dependencies can be set at the same time.
+
+When created, an object doesn't do anything. It must be executed manually or be activated from one of its dependencies that change its own state and communicates this to its dependencies. 
+When executed or activated, every tlh object analyzes its core dependencies and, if all of them are satisfied, it can download library or execute  core script, and then, after verifying the object dependencies, completes the state and executes final callback. 
+If one of the dependencies isn't satisfied, the object waits until it is.
+
+
 
 
