@@ -1,5 +1,5 @@
 
-            <h4>TLH CONSTRUCTOR</h4><br />
+            <h1>TLH CONSTRUCTOR</h1><br />
             <p>
                 <code>window.kw_tlh.tlhObject = new tlhl(objectLabel, configObject);</code><br /><br />
                 <b>objectLabel</b> - { String }<br /><br />
