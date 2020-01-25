@@ -53,7 +53,7 @@ When created, an object doesn't do anything. It must be executed manually or be 
 When executed or activated, every tlh object analyzes its core dependencies and, if all of them are satisfied, it can download library or execute  core script, and then, after verifying the object dependencies, completes the state and executes final callback. 
 If one of the dependencies isn't satisfied, the object waits until it is.
 </p>
-<p style="display:none;">
+<blockquote>
 SETUP CONFIGS<br/>
 kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);<br/>
 kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);<br/>
@@ -76,4 +76,4 @@ window.kw_tlh.webtrekk.addRedLight("wt_init");<br/>
 window.kw_tlh.webtrekk.addRedLight("wt_send");<br/>
 window.kw_tlh.chartbeat = new tlhl("chartbeat", kw_tlh_configs.chartbeat);<br/>
 window.kw_tlh.chartbeat.addLibRedLight("webtrekk_mapping", window.kw_tlh.webtrekk_mapping);<br/>
-</p>
+</blockquote>
