@@ -37,15 +37,31 @@ To every TLH Object can be assigned two kinds of dependencies:
 - a dependency that blocks execution of the core (lib or script) _> core dependency
 - a dependency that blocks the state of the object (completed or not) after the core execution _> object dependency
 Both kind of dependencies can be set at the same time.
+As a dependency, there are many object can be assigned: another TLH Object (resolves when it completes its state), a condizion to test, a variable, an empty dependency that has a label and must be resolved manually with a line of code. 
 
 When created, an object doesn't do anything. It must be executed manually or be activated from one of its dependencies that change its own state and communicates this to its dependencies. 
 When executed or activated, every tlh object analyzes its core dependencies and, if all of them are satisfied, it can download library or execute  core script, and then, after verifying the object dependencies, completes the state and executes final callback. 
 If one of the dependencies isn't satisfied, the object waits until it is.
 
-<code>
-kw_tlh_configs.taboola_library = tlhControlObject(null, "https://cdn.taboola.com/exampleurl/loader.js", null, null, true);</code><br />
-<code>
-kw_tlh_configs.taboola_widgets = tlhControlObject(null, "https://www.example.it/taboola/taboola_home.js", null, null, true);
-</code><br />
-<code>kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);</code><br />
-<code>kw_tlh_configs.chartbeat = tlhControlObject(function() { window.loadChartbeat(); }, "https://www.example.it/chartbeat/chartbeat.js", null, null, true);  </code><br />
+SETUP CONFIGS
+kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);
+kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);
+kw_tlh_configs.chartbeat = tlhControlObject(function() { window.loadChartbeat(); }, "https://www.example.it/chartbeat/chartbeat.js", null, null, true);
+kw_tlh_configs.webtrekk_mapping = tlhControlObject(null, "https://www.example.it/wt/wt_mapping_script.js?pageurl=blablablacurrentpage", null, null, true);
+kw_tlh_configs.webtrekk = tlhControlObject(window.kw_webtrekk_complete, "https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4", window.kw_run_webtrekk, null, true);   
+
+SETUP OBJECTS ANBD DEPENDENCIES
+window.kw_tlh.adsetup = new tlhl("adsetup", kw_tlh_configs.adsetup);
+window.kw_tlh.adsetup.addRedLight("adsetupreal");
+window.kw_tlh.adsetup.addRedLight("infoprivacy", function() { return window.kwdnt !== undefined; });
+window.kw_tlh.nielsenStatic = new tlhl("nielsenStatic", kw_tlh_configs.nielsenStatic);
+window.kw_tlh.nielsenStatic.execute();
+window.kw_tlh.webtrekk_mapping = new tlhl("webtrekk_mapping", kw_tlh_configs.webtrekk_mapping);
+window.kw_tlh.webtrekk_mapping.addLibRedLight("adsetup", window.kw_tlh.adsetup);
+window.kw_tlh.webtrekk = new tlhl("webtrekk", kw_tlh_configs.webtrekk);		
+window.kw_tlh.webtrekk.addLibRedLight("webtrekk_mapping", window.kw_tlh.webtrekk_mapping);
+window.kw_tlh.webtrekk.addLibRedLight("adsetup", window.kw_tlh.adsetup);    
+window.kw_tlh.webtrekk.addRedLight("wt_init");
+window.kw_tlh.webtrekk.addRedLight("wt_send");
+window.kw_tlh.chartbeat = new tlhl("chartbeat", kw_tlh_configs.chartbeat);
+window.kw_tlh.chartbeat.addLibRedLight("webtrekk_mapping", window.kw_tlh.webtrekk_mapping);
