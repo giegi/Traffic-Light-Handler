@@ -17,14 +17,15 @@ C to be downloaded needs: B to be downloaded and executed
 X to be executed needs C to be downloaded and executed
 D needs everything before downloaded and executed to be downloaded.
 At the end of the execution of D, script W can be executed
-
-1) We create A TLH object. 
-2) We create a Z TLH Object. We set A as dependency of Z
-3) We create B TLH object. We set object A to be a library dependency of B. We set object Z to be a dependency of B
-4) We create a C TLH Object. We set B as a dependency of C. Do not need to specify dependency from A and Z because already satisfied from the previous dependencies of B.
-5) We create a X TLH Object. We set C as dependency of X.
-6) We create a D TLH Object. We set X as dependency of D. No need to specify any other dependency as previous dependencies satisfy the needs.
-
+<p>
+<ol>
+<li> We create A TLH object. </li>
+<li> We create a Z TLH Object. We set A as dependency of Z</li>
+<li> We create B TLH object. We set object A to be a library dependency of B. We set object Z to be a dependency of B</li>
+<li> We create a C TLH Object. We set B as a dependency of C. Do not need to specify dependency from A and Z because already satisfied from the previous dependencies of B.</li>
+<li> We create a X TLH Object. We set C as dependency of X.</li>
+<li> We create a D TLH Object. We set X as dependency of D. No need to specify any other dependency as previous dependencies satisfy the needs.</li>
+</ol>
 In a so made scenario, Trafic Light Handler allows you to set complex hierarchies of objects. 
 Every TLH object can be a library to download, a script to execute, an empty container, or both the firsts.
 For every TLH Object a couple of things can be set:
