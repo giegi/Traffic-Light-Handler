@@ -54,9 +54,9 @@ When executed or activated, every tlh object analyzes its core dependencies and,
 If one of the dependencies isn't satisfied, the object waits until it is.
 </p>
 <p>
-SETUP CONFIGS
-kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);
-kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);
+SETUP CONFIGS<br/>
+kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);<br/>
+kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);<br/>
 kw_tlh_configs.chartbeat = tlhControlObject(function() { window.loadChartbeat(); }, "https://www.example.it/chartbeat/chartbeat.js", null, null, true);
 kw_tlh_configs.webtrekk_mapping = tlhControlObject(null, "https://www.example.it/wt/wt_mapping_script.js?pageurl=blablablacurrentpage", null, null, true);
 kw_tlh_configs.webtrekk = tlhControlObject(window.kw_webtrekk_complete, "https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4", window.kw_run_webtrekk, null, true);   
