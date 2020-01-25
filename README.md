@@ -18,39 +18,49 @@ X to be executed needs C to be downloaded and executed
 D needs everything before downloaded and executed to be downloaded.
 At the end of the execution of D, script W can be executed
 <p>
-<ol>
-<li> We create A TLH object. </li>
-<li> We create a Z TLH Object. We set A as dependency of Z</li>
-<li> We create B TLH object. We set object A to be a library dependency of B. We set object Z to be a dependency of B</li>
-<li> We create a C TLH Object. We set B as a dependency of C. Do not need to specify dependency from A and Z because already satisfied from the previous dependencies of B.</li>
-<li> We create a X TLH Object. We set C as dependency of X.</li>
-<li> We create a D TLH Object. We set X as dependency of D. No need to specify any other dependency as previous dependencies satisfy the needs.</li>
-</ol>
-In a so made scenario, Trafic Light Handler allows you to set complex hierarchies of objects. 
-Every TLH object can be a library to download, a script to execute, an empty container, or both the firsts.
-For every TLH Object a couple of things can be set:
-- its core: a library to download or a script to execute
-- a callback function when library has been successfully downloaded (or script properly executed)
-- a callback function when library download or script execution caused an error
-- a callback function when the object is complete (lib downloaded or script executed, no other dependencies still active)
+  <ol>
+    <li> We create A TLH object. </li>
+    <li> We create a Z TLH Object. We set A as dependency of Z</li>
+    <li> We create B TLH object. We set object A to be a library dependency of B. We set object Z to be a dependency of B</li>
+    <li> We create a C TLH Object. We set B as a dependency of C. Do not need to specify dependency from A and Z because already satisfied from the previous dependencies of B.</li>
+    <li> We create a X TLH Object. We set C as dependency of X.</li>
+    <li> We create a D TLH Object. We set X as dependency of D. No need to specify any other dependency as previous dependencies satisfy the needs.</li>
+  </ol>
+  In a so made scenario, Trafic Light Handler allows you to set complex hierarchies of objects. 
+  Every TLH object can be a library to download, a script to execute, an empty container, or both the firsts.
+  For every TLH Object a couple of things can be set:
+  <ul>
+    <li> its core: a library to download or a script to execute</li>
+    <li> a callback function when library has been successfully downloaded (or script properly executed)</li>
+    <li> a callback function when library download or script execution caused an error</li>
+    <li> a callback function when the object is complete (lib downloaded or script executed, no other dependencies still active)</li>
+  </ul>
 
-To every TLH Object can be assigned two kinds of dependencies:
-- a dependency that blocks execution of the core (lib or script) _> core dependency
-- a dependency that blocks the state of the object (completed or not) after the core execution _> object dependency
-Both kind of dependencies can be set at the same time.
-As a dependency, there are many object can be assigned: another TLH Object (resolves when it completes its state), a condizion to test, a variable, an empty dependency that has a label and must be resolved manually with a line of code. 
+  To every TLH Object can be assigned two kinds of dependencies:
+  <ul>
+    <li> a dependency that blocks execution of the core (lib or script) _> core dependency</li>
+    <li> a dependency that blocks the state of the object (completed or not) after the core execution _> object dependency</li>
+  </ul>
+  Both kind of dependencies can be set at the same time.
 
+  As a dependency, there are many object can be assigned: 
+  <ul>
+    <li>another TLH Object (resolves when it completes its state)</li>
+    <li>a condition to test</li>
+    <li>an empty dependency that has a label and must be resolved manually with a line of code</li>
+  </ul>
 When created, an object doesn't do anything. It must be executed manually or be activated from one of its dependencies that change its own state and communicates this to its dependencies. 
 When executed or activated, every tlh object analyzes its core dependencies and, if all of them are satisfied, it can download library or execute  core script, and then, after verifying the object dependencies, completes the state and executes final callback. 
 If one of the dependencies isn't satisfied, the object waits until it is.
-
+</p>
+<p>
 SETUP CONFIGS
 kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);
 kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);
 kw_tlh_configs.chartbeat = tlhControlObject(function() { window.loadChartbeat(); }, "https://www.example.it/chartbeat/chartbeat.js", null, null, true);
 kw_tlh_configs.webtrekk_mapping = tlhControlObject(null, "https://www.example.it/wt/wt_mapping_script.js?pageurl=blablablacurrentpage", null, null, true);
 kw_tlh_configs.webtrekk = tlhControlObject(window.kw_webtrekk_complete, "https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4", window.kw_run_webtrekk, null, true);   
-
+</p><p>
 SETUP OBJECTS ANBD DEPENDENCIES
 window.kw_tlh.adsetup = new tlhl("adsetup", kw_tlh_configs.adsetup);
 window.kw_tlh.adsetup.addRedLight("adsetupreal");
@@ -66,3 +76,4 @@ window.kw_tlh.webtrekk.addRedLight("wt_init");
 window.kw_tlh.webtrekk.addRedLight("wt_send");
 window.kw_tlh.chartbeat = new tlhl("chartbeat", kw_tlh_configs.chartbeat);
 window.kw_tlh.chartbeat.addLibRedLight("webtrekk_mapping", window.kw_tlh.webtrekk_mapping);
+</p>
