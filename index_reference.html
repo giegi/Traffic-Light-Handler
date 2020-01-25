@@ -1,0 +1,132 @@
+<html>
+<body>
+<h4>TLH CONSTRUCTOR</h4><br />
+<p>
+<code>window.kw_tlh.tlhObject = new tlhl(objectLabel, configObject);</code><br /><br />
+<b>objectLabel</b> - { String }<br /><br />
+<b>configObject</b> - { Object }<br />
+<code>
+{<br />
+// TLH Callback - {default: null | Function | String }<br />
+'cb': null, <br />
+// TLH Library Url - {default: undefined | String }<br />
+'libUrl':  undefined,<br />
+// TLH Library Success Callback - {default: null | Function }<br />
+'libCbSuccess' : null<br />
+// TLH Library Error Callback - {default: null | Function }<br />
+'libCbError' : null<br />
+// TLH Continue On Failure - {default: "true" | String(true|false) }<br />
+'cof' : "true"<br />
+} <br />
+</code>
+</p>
+<br /><br />
+<h4>METHODS</h4>
+<br />
+<hr />
+<br />
+<p>
+<b>getName()</b>
+<span>Returns TLH OBJECT'S NAME </span><br />
+<br /><code><b>return</b>  String</code><br />
+</p>
+<br />
+<hr />
+<br />
+<p>
+<b>getBlockers(getMode)</b>
+<span>Prints into the console all the dependencies and their state for this TLH object</span> <br />
+<br />                
+<code>getMode { null | "tlh" | "library" }</code><br />
+<br /><code><b>return</b> null</code><br />
+</p>
+<br />
+<hr />
+<br />
+<p>
+<b>getStatus(doCallback)</b>
+<span>Prints into the console TLH object status. If doCallback is true, it performs a test to the object to verify if all the dependencies are satisfied. If yes it will fire the object callback</span>  <br />   
+<br />
+<code>doCallback { false | Boolean }</code><br />
+<br /><code><b>return</b>  Boolean </code><br />
+</p>
+<br />
+<hr />
+<br />
+<p>
+<b>addRedLight(_light, _status)</b>
+<span>Adds a dependency to the TLH object</span>  <br />   
+<br />
+<code>_light { not empty | String }</code><br />
+<code> _status { false | tlhObject | Boolean | Function (not implemented yet) }</code><br />
+<br /><code><b>return</b>  true if success</code><br />
+</p>
+
+
+<br />
+<hr />
+<br />
+<p>
+<b>addLibRedLight(_light, _status)</b>
+<span>Adds a dependency blocking the library downloading to the TLH object</span>  <br />   
+<br />
+<code>_light { not empty | String }</code><br />
+<code> _status { false | tlhObject | Boolean | Function (not imp
+<br /><code><b>return</b>  true if success</code><br />
+</p>
+
+
+<br />
+<hr />
+<br />
+<p>
+<b>setLibGreenLight(_light, _checkStatus, _doCallback)</b>
+<span>Declares satisfied a dependency for library downloading. If <code>_checkStatus</code> is true, a check will be performed on the TLH object. If <code>_doCallback</code> is true, and the dependencies are satisfied, the object callback will be fired</span>  <br />   
+<br />
+<code>_light { not empty | String }</code><br />
+<code>_checkStatus { not empty | Boolean }</code><br />
+<code>_doCallback { false | Boolean }</code><br />
+<br /><code><b>return</b>  String</code><br />
+</p>
+
+
+
+<br />
+<hr />
+<br />
+<p>
+<b>setGreenLight(_light, _checkStatus, _doCallback)</b>
+<span>Declares satisfied a dependency for TLH object. If <code>_checkStatus</code> is true, a check will be performed on the TLH object. If <code>_doCallback</code> is true, and the dependencies are satisfied, the object callback will be fired</span>  <br />   
+<br />
+<code>_light { not empty | String }</code><br />
+<code>_checkStatus { not empty | Boolean }</code><br />
+<code>_doCallback { false | Boolean }</code><br />
+<br /><code><b>return</b>  String</code><br />
+</p>
+
+
+
+<br />
+<hr />
+<br />
+<p>
+<b>removeLight(_light)</b>
+<span>Removes an object dependency from TLH object</span>  <br />   
+<br />
+<code>_light { not empty | String }</code><br />
+<br /><code><b>return</b>  true if success</code><br />
+</p>
+
+
+
+<br />
+<hr />
+<br />
+<p>
+<b>removeLibLight(_light)</b>
+<span>Removes a library dependency from the TLH object</span>  <br />   
+<br />
+<code>_light { not empty | String }</code><br />
+<br /><code><b>return</b>  true if success</code><br />
+</p>
+</body></html>
