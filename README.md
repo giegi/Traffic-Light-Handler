@@ -53,14 +53,14 @@ When created, an object doesn't do anything. It must be executed manually or be 
 When executed or activated, every tlh object analyzes its core dependencies and, if all of them are satisfied, it can download library or execute  core script, and then, after verifying the object dependencies, completes the state and executes final callback. 
 If one of the dependencies isn't satisfied, the object waits until it is.
 </p>
-<p>
+<p style="font-size: 10px;">
 SETUP CONFIGS<br/>
 kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);<br/>
 kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);<br/>
 kw_tlh_configs.chartbeat = tlhControlObject(function() { window.loadChartbeat(); }, "https://www.example.it/chartbeat/chartbeat.js", null, null, true);<br/>
 kw_tlh_configs.webtrekk_mapping = tlhControlObject(null, "https://www.example.it/wt/wt_mapping_script.js?pageurl=blablablacurrentpage", null, null, true);<br/>
-kw_tlh_configs.webtrekk = tlhControlObject(window.kw_webtrekk_complete, "https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4", window.kw_run_webtrekk, null, true);<br/>   
-</p><p>
+kw_tlh_configs.webtrekk = tlhControlObject(window.kw_webtrekk_complete, "https://www.exampe.it//config_webtrekk.php", window.kw_run_webtrekk, null, true);<br/>   
+<br />
 SETUP OBJECTS ANBD DEPENDENCIES<br/>
 window.kw_tlh.adsetup = new tlhl("adsetup", kw_tlh_configs.adsetup);<br/>
 window.kw_tlh.adsetup.addRedLight("adsetupreal");<br/>
