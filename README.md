@@ -1,5 +1,5 @@
-<h2>TLH</h2><br />
-<p><b>tlh</b> stands for Traffic Light Handler. <br />
+<h2>Traffic Light Handler - TLH</h2><br />
+
 You might never need this tool in your whole programmer life. Most of the web developers won't have the need to use a library download manager to handle which library to load first, and which libraries need to be waited before downloading another one. Many developers won't need to wait data from three, four, five other javascript sources.<br />
 But if you might need to do this, tlh is right for you.<br />
 TLH is a js/css library download handler for complex javascript ecosystems. </p>
