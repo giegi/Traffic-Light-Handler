@@ -57,23 +57,23 @@ If one of the dependencies isn't satisfied, the object waits until it is.
 SETUP CONFIGS<br/>
 kw_tlh_configs.adsetup = tlhControlObject(null, undefined, null, null, null);<br/>
 kw_tlh_configs.nielsenStatic = tlhControlObject(null, "https://www.example.it/nielsen/nielsen_static.js", null, null, true);<br/>
-kw_tlh_configs.chartbeat = tlhControlObject(function() { window.loadChartbeat(); }, "https://www.example.it/chartbeat/chartbeat.js", null, null, true);
-kw_tlh_configs.webtrekk_mapping = tlhControlObject(null, "https://www.example.it/wt/wt_mapping_script.js?pageurl=blablablacurrentpage", null, null, true);
-kw_tlh_configs.webtrekk = tlhControlObject(window.kw_webtrekk_complete, "https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4", window.kw_run_webtrekk, null, true);   
+kw_tlh_configs.chartbeat = tlhControlObject(function() { window.loadChartbeat(); }, "https://www.example.it/chartbeat/chartbeat.js", null, null, true);<br/>
+kw_tlh_configs.webtrekk_mapping = tlhControlObject(null, "https://www.example.it/wt/wt_mapping_script.js?pageurl=blablablacurrentpage", null, null, true);<br/>
+kw_tlh_configs.webtrekk = tlhControlObject(window.kw_webtrekk_complete, "https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4", window.kw_run_webtrekk, null, true);<br/>   
 </p><p>
-SETUP OBJECTS ANBD DEPENDENCIES
-window.kw_tlh.adsetup = new tlhl("adsetup", kw_tlh_configs.adsetup);
-window.kw_tlh.adsetup.addRedLight("adsetupreal");
-window.kw_tlh.adsetup.addRedLight("infoprivacy", function() { return window.kwdnt !== undefined; });
-window.kw_tlh.nielsenStatic = new tlhl("nielsenStatic", kw_tlh_configs.nielsenStatic);
-window.kw_tlh.nielsenStatic.execute();
-window.kw_tlh.webtrekk_mapping = new tlhl("webtrekk_mapping", kw_tlh_configs.webtrekk_mapping);
-window.kw_tlh.webtrekk_mapping.addLibRedLight("adsetup", window.kw_tlh.adsetup);
-window.kw_tlh.webtrekk = new tlhl("webtrekk", kw_tlh_configs.webtrekk);		
-window.kw_tlh.webtrekk.addLibRedLight("webtrekk_mapping", window.kw_tlh.webtrekk_mapping);
-window.kw_tlh.webtrekk.addLibRedLight("adsetup", window.kw_tlh.adsetup);    
-window.kw_tlh.webtrekk.addRedLight("wt_init");
-window.kw_tlh.webtrekk.addRedLight("wt_send");
-window.kw_tlh.chartbeat = new tlhl("chartbeat", kw_tlh_configs.chartbeat);
-window.kw_tlh.chartbeat.addLibRedLight("webtrekk_mapping", window.kw_tlh.webtrekk_mapping);
+SETUP OBJECTS ANBD DEPENDENCIES<br/>
+window.kw_tlh.adsetup = new tlhl("adsetup", kw_tlh_configs.adsetup);<br/>
+window.kw_tlh.adsetup.addRedLight("adsetupreal");<br/>
+window.kw_tlh.adsetup.addRedLight("infoprivacy", function() { return window.kwdnt !== undefined; });<br/>
+window.kw_tlh.nielsenStatic = new tlhl("nielsenStatic", kw_tlh_configs.nielsenStatic);<br/>
+window.kw_tlh.nielsenStatic.execute();<br/>
+window.kw_tlh.webtrekk_mapping = new tlhl("webtrekk_mapping", kw_tlh_configs.webtrekk_mapping);<br/>
+window.kw_tlh.webtrekk_mapping.addLibRedLight("adsetup", window.kw_tlh.adsetup);<br/>
+window.kw_tlh.webtrekk = new tlhl("webtrekk", kw_tlh_configs.webtrekk);		<br/>
+window.kw_tlh.webtrekk.addLibRedLight("webtrekk_mapping", window.kw_tlh.webtrekk_mapping);<br/>
+window.kw_tlh.webtrekk.addLibRedLight("adsetup", window.kw_tlh.adsetup);    <br/>
+window.kw_tlh.webtrekk.addRedLight("wt_init");<br/>
+window.kw_tlh.webtrekk.addRedLight("wt_send");<br/>
+window.kw_tlh.chartbeat = new tlhl("chartbeat", kw_tlh_configs.chartbeat);<br/>
+window.kw_tlh.chartbeat.addLibRedLight("webtrekk_mapping", window.kw_tlh.webtrekk_mapping);<br/>
 </p>
